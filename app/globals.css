@@ -1,0 +1,210 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-fraunces: "Fraunces", serif;
+  --font-inter: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #C98A2B #141B2E;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #141B2E;
+  color: #F7F3EA;
+}
+
+::selection {
+  background: #C98A2B;
+  color: #141B2E;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Fine paper-grain overlay for atmosphere on dark sections */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  z-index: 200;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Ambient floating aurora blobs used in Hero / CTA */
+@keyframes floatA {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(4%, 6%) scale(1.08); }
+}
+@keyframes floatB {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-5%, -4%) scale(1.1); }
+}
+@keyframes floatC {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-6%, 5%) scale(0.94); }
+}
+.animate-float-a { animation: floatA 22s ease-in-out infinite; }
+.animate-float-b { animation: floatB 26s ease-in-out infinite; }
+.animate-float-c { animation: floatC 30s ease-in-out infinite; }
+
+/* Infinite marquee ticker */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 34s linear infinite;
+}
+.marquee-pause:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeSlow {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee-slow {
+  animation: marqueeSlow 50s linear infinite;
+}
+
+/* Fine background grid used behind the hero headline */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(247, 243, 234, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(247, 243, 234, 0.035) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 30%, transparent 80%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 30%, transparent 80%);
+}
+
+/* scroll-drop indicator used in the hero scroll cue */
+@keyframes scrolldrop {
+  0% { top: -100%; }
+  60% { top: 100%; }
+  100% { top: 100%; }
+}
+.scroll-track::after {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #C98A2B;
+  animation: scrolldrop 1.8s ease-in-out infinite;
+}
+
+/* ===== 3D crate scene (Hero signature) ===== */
+.scene-perspective {
+  perspective: 1600px;
+}
+.rig-3d {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1px;
+  height: 1px;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.crate-pos {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-style: preserve-3d;
+}
+.crate-float {
+  transform-style: preserve-3d;
+  animation: crateBob 7s ease-in-out infinite;
+}
+@keyframes crateBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-16px); }
+}
+
+.cube-spin {
+  position: relative;
+  transform-style: preserve-3d;
+  animation: cubeSpin 26s linear infinite;
+}
+@keyframes cubeSpin {
+  from { transform: rotateY(0deg) rotateX(6deg); }
+  to { transform: rotateY(360deg) rotateX(6deg); }
+}
+
+.cube-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 1px solid rgba(247, 243, 234, 0.16);
+  backface-visibility: hidden;
+}
+.cube-face-front {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  padding: 10px;
+}
+.cube-face-plain {
+  background-image: repeating-linear-gradient(45deg, rgba(247, 243, 234, 0.05) 0 6px, transparent 6px 16px);
+}
+
+.orbit-ring {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(242, 169, 59, 0.18);
+  transform-style: preserve-3d;
+}
+@keyframes ringSpin {
+  from { transform: rotateX(78deg) rotateZ(0deg); }
+  to { transform: rotateX(78deg) rotateZ(360deg); }
+}
+.scene-ground {
+  position: absolute;
+  left: 50%;
+  bottom: 6%;
+  width: 60%;
+  height: 60px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse, rgba(242, 169, 59, 0.16), transparent 70%);
+  filter: blur(6px);
+}
