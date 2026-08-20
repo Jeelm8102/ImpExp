@@ -18,7 +18,7 @@ export default function Timeline() {
   const railHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section id="process" className="relative bg-ink py-28 md:py-36">
+    <section id="process" className="relative bg-alabaster py-28 md:py-36">
       <div className="mx-auto max-w-7xl px-6 md:px-10">
         <p className="eyebrow text-saffron mb-3.5">Process</p>
         <h2 className="font-display text-4xl md:text-5xl font-normal leading-tight">
@@ -28,7 +28,7 @@ export default function Timeline() {
         </h2>
 
         <div ref={ref} className="relative mt-16 pl-11">
-          <div className="absolute left-[6px] top-0 bottom-0 w-0.5 bg-alabaster/[0.12]" />
+          <div className="absolute left-[6px] top-0 bottom-0 w-0.5 bg-ink/[0.12]" />
           <motion.div
             style={{ height: railHeight }}
             className="absolute left-[6px] top-0 w-0.5 bg-gradient-to-b from-saffron to-paprika"
@@ -53,15 +53,15 @@ function TimelineItem({ step, isLast }: { step: (typeof STEPS)[number]; isLast: 
       className={`relative ${isLast ? "" : "pb-16"}`}
     >
       <motion.span
-        initial={{ borderColor: "rgba(247,243,234,0.25)", boxShadow: "0 0 0px rgba(242,169,59,0)" }}
+        initial={{ borderColor: "rgba(20,27,46,0.25)", boxShadow: "0 0 0px rgba(242,169,59,0)" }}
         whileInView={{ borderColor: "#C98A2B", boxShadow: "0 0 16px rgba(242,169,59,0.5)" }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.5 }}
-        className="absolute -left-11 top-0.5 w-3.5 h-3.5 rounded-full bg-ink border-2"
+        className="absolute -left-11 top-0.5 w-3.5 h-3.5 rounded-full bg-alabaster border-2"
       />
       <span className="font-mono text-xs text-saffron/80">{step.n}</span>
       <h3 className="font-display text-2xl mt-2.5 mb-2">{step.title}</h3>
-      <p className="text-alabaster/60 max-w-xl leading-relaxed text-[0.92rem]">{step.desc}</p>
+      <p className="text-ink/60 max-w-xl leading-relaxed text-[0.92rem]">{step.desc}</p>
     </motion.div>
   );
 }

@@ -27,7 +27,7 @@ export default function Showcase() {
   const barWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section id="showcase" ref={sectionRef} className="relative bg-ink" style={{ height: "400vh" }}>
+    <section id="showcase" ref={sectionRef} className="relative bg-alabaster-dim" style={{ height: "400vh" }}>
       <div className="sticky top-0 h-[100svh] flex flex-col justify-center overflow-hidden">
         <div className="relative z-[5] mx-auto max-w-7xl px-6 md:px-10 pb-2 w-full">
           <p className="eyebrow text-saffron mb-3.5">The Catalog</p>
@@ -43,14 +43,14 @@ export default function Showcase() {
             {PRODUCTS.map((p) => (
               <div
                 key={p.lot}
-                className={`relative flex-none w-[min(380px,72vw)] h-[62vh] min-h-[380px] rounded-3xl p-9 flex flex-col justify-end overflow-hidden border border-alabaster/[0.08] bg-gradient-to-br ${p.from} to-ink`}
+                className={`relative flex-none w-[min(380px,72vw)] h-[62vh] min-h-[380px] rounded-3xl p-9 flex flex-col justify-end overflow-hidden border border-ink/[0.08] bg-gradient-to-br ${p.from} to-alabaster`}
               >
                 <span className="absolute top-7 left-7 font-mono text-[0.7rem] opacity-50">
                   {p.n} / {p.lot}
                 </span>
                 <h3 className="relative font-display text-[1.7rem] mb-2.5">{p.name}</h3>
-                <p className="relative text-sm text-alabaster/65 leading-relaxed max-w-[280px]">{p.desc}</p>
-                <span className="relative mt-4 self-start eyebrow border border-alabaster/20 px-3 py-1.5 rounded-full">
+                <p className="relative text-sm text-ink/65 leading-relaxed max-w-[280px]">{p.desc}</p>
+                <span className="relative mt-4 self-start eyebrow border border-ink/20 px-3 py-1.5 rounded-full">
                   Export Grade
                 </span>
               </div>
@@ -60,7 +60,7 @@ export default function Showcase() {
         </div>
 
         <div className="relative z-[5] mx-auto max-w-7xl px-6 md:px-10 w-full mt-6">
-          <div className="h-0.5 rounded-full bg-alabaster/[0.12] overflow-hidden">
+          <div className="h-0.5 rounded-full bg-ink/[0.12] overflow-hidden">
             <motion.div style={{ width: barWidth }} className="h-full bg-gradient-to-r from-saffron to-paprika" />
           </div>
         </div>

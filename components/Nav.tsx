@@ -24,7 +24,7 @@ export default function Nav() {
   return (
     <header
       className={`fixed top-0 inset-x-0 z-[100] transition-colors duration-500 ${
-        scrolled ? "bg-ink/75 backdrop-blur-xl border-b border-alabaster/[0.08]" : "bg-transparent"
+        scrolled ? "bg-alabaster/75 backdrop-blur-xl border-b border-ink/[0.08]" : "bg-transparent"
       }`}
     >
       <nav className="mx-auto max-w-7xl px-6 md:px-10 h-[88px] flex items-center justify-between">
@@ -32,7 +32,7 @@ export default function Nav() {
           <svg width="30" height="30" viewBox="0 0 40 40" fill="none" className="text-saffron">
             <circle cx="20" cy="20" r="18.5" stroke="currentColor" strokeWidth="1" />
             <path d="M20 8 L24 19 L20 32 L16 19 Z" fill="currentColor" />
-            <circle cx="20" cy="20" r="2.4" fill="#141B2E" />
+            <circle cx="20" cy="20" r="2.4" fill="#F7F3EA" />
           </svg>
           <span>
             Monsoon <span className="italic text-saffron">&amp;</span> Meridian
@@ -61,7 +61,7 @@ export default function Nav() {
           aria-label="Toggle menu"
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="md:hidden p-2 text-alabaster"
+          className="md:hidden p-2 text-ink"
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
             {open ? (
@@ -74,7 +74,7 @@ export default function Nav() {
       </nav>
 
       {open && (
-        <div className="md:hidden fixed inset-x-0 top-[88px] bottom-0 bg-ink/98 px-7 py-10">
+        <div className="md:hidden fixed inset-x-0 top-[88px] bottom-0 bg-alabaster/98 px-7 py-10">
           {links.map((l) => (
             <Link
               key={l.label}

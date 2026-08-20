@@ -41,10 +41,10 @@ export default function Hero() {
     <section
       ref={ref}
       onMouseMove={handleMouseMove}
-      className="relative h-[100svh] min-h-[680px] w-full overflow-hidden bg-ink"
+      className="relative h-[100svh] min-h-[680px] w-full overflow-hidden bg-alabaster"
     >
       {/* Aurora blobs — muted ochre / clay / sage instead of the old saturated cinematic glow */}
-      <motion.div style={{ x: auroraX, y: auroraY }} className="absolute -inset-[10%] blur-[90px] opacity-[0.4]">
+      <motion.div style={{ x: auroraX, y: auroraY }} className="absolute -inset-[10%] blur-[90px] opacity-[0.22]">
         <div className="absolute w-[46vw] h-[46vw] rounded-full -top-[8%] -left-[6%] bg-[radial-gradient(circle,_#B14A32,_transparent_70%)] animate-float-a" />
         <div className="absolute w-[38vw] h-[38vw] rounded-full -bottom-[10%] -right-[4%] bg-[radial-gradient(circle,_#C98A2B,_transparent_70%)] animate-float-b" />
         <div className="absolute w-[30vw] h-[30vw] rounded-full top-[35%] right-[20%] bg-[radial-gradient(circle,_#5B7360,_transparent_70%)] animate-float-c" />
@@ -144,7 +144,7 @@ export default function Hero() {
           className="flex items-center gap-3.5 mb-6"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-saffron shadow-[0_0_12px_#C98A2B]" />
-          <span className="eyebrow text-alabaster/60">Est. 1994 · Charted from 76°E</span>
+          <span className="eyebrow text-ink/60">Est. 1994 · Charted from 76°E</span>
         </motion.div>
 
         <h1 className="font-display font-normal text-[13vw] leading-[0.94] md:text-[6.6rem] lg:text-[5.8rem]">
@@ -168,7 +168,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.1 }}
-          className="mt-8 max-w-xl text-alabaster/60 text-base md:text-lg font-light leading-relaxed"
+          className="mt-8 max-w-xl text-ink/60 text-base md:text-lg font-light leading-relaxed"
         >
           Every shipment starts at the same coordinates — Kochi&apos;s spice
           belt — and is charted from there to your port: sourced, lab-certified,
@@ -183,13 +183,13 @@ export default function Hero() {
         >
           <a
             href="#showcase"
-            className="bg-alabaster text-ink px-8 py-4 rounded-full font-medium text-sm hover:-translate-y-0.5 hover:shadow-[0_10px_30px_rgba(201,138,43,0.25)] transition-all"
+            className="bg-ink text-alabaster px-8 py-4 rounded-full font-medium text-sm hover:-translate-y-0.5 hover:shadow-[0_10px_30px_rgba(20,27,46,0.15)] hover:bg-paprika transition-all"
           >
             Explore the Catalog
           </a>
           <a
             href="/contact"
-            className="border border-alabaster/25 px-8 py-4 rounded-full text-sm hover:border-saffron hover:text-saffron hover:bg-saffron/[0.06] transition-colors"
+            className="border border-ink/20 px-8 py-4 rounded-full text-sm hover:border-saffron hover:text-saffron hover:bg-saffron/[0.06] transition-colors"
           >
             Talk to Trade Desk →
           </a>
@@ -198,10 +198,10 @@ export default function Hero() {
 
       <motion.div
         style={{ opacity: cueOpacity }}
-        className="absolute bottom-9 left-1/2 -translate-x-1/2 z-[5] flex flex-col items-center gap-2.5 text-alabaster/45"
+        className="absolute bottom-9 left-1/2 -translate-x-1/2 z-[5] flex flex-col items-center gap-2.5 text-ink/45"
       >
         <span className="eyebrow">Scroll</span>
-        <span className="scroll-track relative w-px h-11 bg-alabaster/20 overflow-hidden" />
+        <span className="scroll-track relative w-px h-11 bg-ink/10 overflow-hidden" />
       </motion.div>
     </section>
   );

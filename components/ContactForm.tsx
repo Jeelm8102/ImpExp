@@ -12,7 +12,7 @@ export default function ContactForm() {
           SENT
         </span>
         <h3 className="font-display text-2xl mb-2">Inquiry logged.</h3>
-        <p className="text-alabaster/60 text-sm">
+        <p className="text-ink/60 text-sm">
           Our trade desk will respond to your inquiry within one business day.
         </p>
       </div>
@@ -40,17 +40,17 @@ export default function ContactForm() {
         <Field label="Estimated volume" name="volume" placeholder="1x 20ft container / month" />
       </div>
       <div>
-        <label className="eyebrow text-alabaster/50 block mb-3">Message</label>
+        <label className="eyebrow text-ink/50 block mb-3">Message</label>
         <textarea
           name="message"
           rows={4}
           placeholder="Tell us about your requirement, target price and timeline."
-          className="w-full bg-transparent border-b border-alabaster/25 focus:border-saffron outline-none py-2 text-alabaster placeholder:text-alabaster/30 transition-colors resize-none"
+          className="w-full bg-transparent border-b border-ink/25 focus:border-saffron outline-none py-2 text-ink placeholder:text-ink/30 transition-colors resize-none"
         />
       </div>
       <button
         type="submit"
-        className="bg-saffron text-ink px-8 py-4 rounded-full font-medium text-sm hover:bg-alabaster transition-colors"
+        className="bg-saffron text-ink px-8 py-4 rounded-full font-medium text-sm hover:bg-ink hover:text-alabaster transition-colors"
       >
         Submit Inquiry
       </button>
@@ -73,7 +73,7 @@ function Field({
 }) {
   return (
     <div>
-      <label htmlFor={name} className="eyebrow text-alabaster/50 block mb-3">
+      <label htmlFor={name} className="eyebrow text-ink/50 block mb-3">
         {label}
         {required && <span className="text-saffron"> *</span>}
       </label>
@@ -83,7 +83,7 @@ function Field({
         type={type}
         required={required}
         placeholder={placeholder}
-        className="w-full bg-transparent border-b border-alabaster/25 focus:border-saffron outline-none py-2 text-alabaster placeholder:text-alabaster/30 transition-colors"
+        className="w-full bg-transparent border-b border-ink/25 focus:border-saffron outline-none py-2 text-ink placeholder:text-ink/30 transition-colors"
       />
     </div>
   );

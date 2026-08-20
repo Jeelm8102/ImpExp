@@ -44,7 +44,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${fraunces.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
-      <body className="font-body bg-ink text-alabaster antialiased">
+      <body className="font-body bg-alabaster text-ink antialiased">
         <div className="grain-overlay" />
         {children}
       </body>

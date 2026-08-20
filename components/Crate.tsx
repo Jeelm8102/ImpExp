@@ -1,7 +1,7 @@
 const ACCENTS = {
-  sage: "linear-gradient(155deg, rgba(91,115,96,.34), rgba(20,27,46,.9))",
-  clay: "linear-gradient(155deg, rgba(177,74,50,.34), rgba(20,27,46,.9))",
-  ochre: "linear-gradient(155deg, rgba(201,138,43,.34), rgba(20,27,46,.9))",
+  sage: "linear-gradient(155deg, rgba(91,115,96,.34), rgba(247,243,234,.95))",
+  clay: "linear-gradient(155deg, rgba(177,74,50,.34), rgba(247,243,234,.95))",
+  ochre: "linear-gradient(155deg, rgba(201,138,43,.34), rgba(247,243,234,.95))",
 };
 
 export default function Crate({
@@ -58,7 +58,7 @@ export default function Crate({
             <div
               key={f.key}
               className={`cube-face ${f.front ? "cube-face-front" : "cube-face-plain"}`}
-              style={{ ...faceBase, transform: f.transform, color: "#F7F3EA" }}
+              style={{ ...faceBase, transform: f.transform, color: "#141B2E" }}
             >
               {f.front && <span>{label}</span>}
             </div>

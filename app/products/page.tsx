@@ -86,32 +86,32 @@ export default function ProductsPage() {
   return (
     <main>
       <Nav />
-      <section className="relative bg-ink pt-40 pb-20 border-b border-alabaster/10 bg-grid">
+      <section className="relative bg-alabaster pt-40 pb-20 border-b border-ink/10 bg-grid">
         <div className="mx-auto max-w-7xl px-6 md:px-10">
           <p className="eyebrow text-saffron mb-4">Full Catalog</p>
           <h1 className="font-display text-4xl md:text-6xl font-light max-w-3xl text-balance">
             Six categories.
             <span className="italic text-saffron"> Export-grade throughout.</span>
           </h1>
-          <p className="mt-6 text-alabaster/60 max-w-xl">
+          <p className="mt-6 text-ink/60 max-w-xl">
             All specifications available on request — packaging, grading and
             minimum order quantities are tailored per buyer market.
           </p>
         </div>
       </section>
 
-      <section className="bg-ink py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-6 md:px-10 grid md:grid-cols-2 gap-px bg-alabaster/10">
+      <section className="bg-alabaster-dim py-20 md:py-28">
+        <div className="mx-auto max-w-7xl px-6 md:px-10 grid md:grid-cols-2 gap-px bg-ink/10">
           {CATALOG.map((c) => (
-            <div key={c.lot} className="bg-ink p-8 md:p-12">
+            <div key={c.lot} className="bg-white p-8 md:p-12">
               <div className="flex items-center justify-between mb-6">
                 <span className="font-mono text-[10px] text-saffron tracking-widest2">{c.lot}</span>
-                <span className="flex-1 mx-4 h-px bg-alabaster/15" />
+                <span className="flex-1 mx-4 h-px bg-ink/15" />
               </div>
               <h2 className="font-display text-2xl md:text-3xl mb-6">{c.category}</h2>
               <ul className="space-y-2.5">
                 {c.items.map((item) => (
-                  <li key={item} className="flex items-center gap-3 text-sm text-alabaster/70">
+                  <li key={item} className="flex items-center gap-3 text-sm text-ink/70">
                     <span className="w-1 h-1 rounded-full bg-saffron/70 shrink-0" />
                     {item}
                   </li>
@@ -122,17 +122,17 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      <section className="bg-alabaster text-ink py-20">
+      <section className="bg-ink text-alabaster py-20">
         <div className="mx-auto max-w-7xl px-6 md:px-10 flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
-            <p className="eyebrow text-paprika mb-3">Custom Sourcing</p>
+            <p className="eyebrow text-saffron mb-3">Custom Sourcing</p>
             <h2 className="font-display text-3xl md:text-4xl font-light max-w-lg text-balance">
               Don&apos;t see what you need? We source on request.
             </h2>
           </div>
           <a
             href="/contact"
-            className="bg-ink text-alabaster px-8 py-4 rounded-full text-sm font-medium hover:bg-paprika transition-colors shrink-0"
+            className="bg-alabaster text-ink px-8 py-4 rounded-full text-sm font-medium hover:bg-paprika hover:text-alabaster transition-colors shrink-0"
           >
             Request a Quote
           </a>

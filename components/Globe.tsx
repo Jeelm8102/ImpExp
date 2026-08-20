@@ -37,9 +37,9 @@ export default function Globe() {
   });
 
   return (
-    <section id="network" ref={sectionRef} className="relative bg-ink" style={{ height: "320vh" }}>
+    <section id="network" ref={sectionRef} className="relative bg-alabaster" style={{ height: "320vh" }}>
       <div className="sticky top-0 h-[100svh] flex flex-col justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_50%_55%,#1D2740_0%,#141B2E_68%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_50%_55%,#FDFBF7_0%,#EAE3D3_75%)]" />
 
         <div className="relative z-[5] mx-auto max-w-7xl px-6 md:px-10 w-full">
           <p className="eyebrow text-saffron mb-3.5">Trade Network</p>
@@ -60,13 +60,13 @@ export default function Globe() {
             </defs>
 
             <g className="origin-center animate-[spin_90s_linear_infinite]" style={{ transformOrigin: "400px 400px" }}>
-              <circle cx="400" cy="400" r="300" fill="none" stroke="rgba(247,243,234,.14)" strokeWidth="1" />
-              <ellipse cx="400" cy="400" rx="300" ry="90" fill="none" stroke="rgba(247,243,234,.1)" strokeWidth="1" />
-              <ellipse cx="400" cy="400" rx="300" ry="180" fill="none" stroke="rgba(247,243,234,.1)" strokeWidth="1" />
-              <ellipse cx="400" cy="400" rx="90" ry="300" fill="none" stroke="rgba(247,243,234,.1)" strokeWidth="1" />
-              <ellipse cx="400" cy="400" rx="180" ry="300" fill="none" stroke="rgba(247,243,234,.1)" strokeWidth="1" />
-              <line x1="100" y1="400" x2="700" y2="400" stroke="rgba(247,243,234,.1)" strokeWidth="1" />
-              <line x1="400" y1="100" x2="400" y2="700" stroke="rgba(247,243,234,.1)" strokeWidth="1" />
+              <circle cx="400" cy="400" r="300" fill="none" stroke="rgba(20,27,46,.12)" strokeWidth="1" />
+              <ellipse cx="400" cy="400" rx="300" ry="90" fill="none" stroke="rgba(20,27,46,.07)" strokeWidth="1" />
+              <ellipse cx="400" cy="400" rx="300" ry="180" fill="none" stroke="rgba(20,27,46,.07)" strokeWidth="1" />
+              <ellipse cx="400" cy="400" rx="90" ry="300" fill="none" stroke="rgba(20,27,46,.07)" strokeWidth="1" />
+              <ellipse cx="400" cy="400" rx="180" ry="300" fill="none" stroke="rgba(20,27,46,.07)" strokeWidth="1" />
+              <line x1="100" y1="400" x2="700" y2="400" stroke="rgba(20,27,46,.07)" strokeWidth="1" />
+              <line x1="400" y1="100" x2="400" y2="700" stroke="rgba(20,27,46,.07)" strokeWidth="1" />
             </g>
 
             {PORTS.slice(0, -1).map((p, i) => (
@@ -86,10 +86,10 @@ export default function Globe() {
                 <g key={p.code} style={{ opacity: active ? 1 : 0.25, transition: "opacity .5s" }}>
                   {i === activeIdx && <circle cx={p.x} cy={p.y} r="22" fill="url(#glowGrad)" opacity="0.7" />}
                   <circle cx={p.x} cy={p.y} r={i === activeIdx ? 7 : 5} fill={active ? "#C98A2B" : "#6B7278"} />
-                  <text x={p.x} y={p.y - 16} textAnchor="middle" fontFamily="var(--font-mono)" fontSize="13" fill={active ? "#9BA3AA" : "#6B7278"}>
+                  <text x={p.x} y={p.y - 16} textAnchor="middle" fontFamily="var(--font-mono)" fontSize="13" fill={active ? "#141B2E" : "#8A8270"}>
                     {p.name}
                   </text>
-                  <text x={p.x} y={p.y + 26} textAnchor="middle" fontFamily="var(--font-mono)" fontSize="9" fill="#6B7278">
+                  <text x={p.x} y={p.y + 26} textAnchor="middle" fontFamily="var(--font-mono)" fontSize="9" fill="#8A8270">
                     {p.coords}
                   </text>
                 </g>
@@ -99,7 +99,7 @@ export default function Globe() {
         </div>
 
         <div className="relative z-[5] mx-auto max-w-7xl px-6 md:px-10 w-full">
-          <div className="flex justify-between font-mono text-xs text-alabaster/55 border-t border-alabaster/10 pt-4 mt-2.5">
+          <div className="flex justify-between font-mono text-xs text-ink/55 border-t border-ink/10 pt-4 mt-2.5">
             <span>{PORTS[activeIdx].tag}</span>
             <span>
               Port {activeIdx + 1} / {PORTS.length} — {PORTS[activeIdx].code}

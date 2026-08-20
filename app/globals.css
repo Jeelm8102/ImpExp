@@ -10,7 +10,7 @@
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: #C98A2B #141B2E;
+  scrollbar-color: #C98A2B #F7F3EA;
 }
 
 html {
@@ -18,8 +18,8 @@ html {
 }
 
 body {
-  background-color: #141B2E;
-  color: #F7F3EA;
+  background-color: #F7F3EA;
+  color: #141B2E;
 }
 
 ::selection {
@@ -103,8 +103,8 @@ body {
 /* Fine background grid used behind the hero headline */
 .bg-grid {
   background-image:
-    linear-gradient(rgba(247, 243, 234, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(247, 243, 234, 0.035) 1px, transparent 1px);
+    linear-gradient(rgba(20, 27, 46, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20, 27, 46, 0.035) 1px, transparent 1px);
   background-size: 64px 64px;
   -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 30%, transparent 80%);
   mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 30%, transparent 80%);
@@ -172,7 +172,7 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  border: 1px solid rgba(247, 243, 234, 0.16);
+  border: 1px solid rgba(20, 27, 46, 0.12);
   backface-visibility: hidden;
 }
 .cube-face-front {
@@ -183,7 +183,7 @@ body {
   padding: 10px;
 }
 .cube-face-plain {
-  background-image: repeating-linear-gradient(45deg, rgba(247, 243, 234, 0.05) 0 6px, transparent 6px 16px);
+  background-image: repeating-linear-gradient(45deg, rgba(20, 27, 46, 0.03) 0 6px, transparent 6px 16px);
 }
 
 .orbit-ring {

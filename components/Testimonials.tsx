@@ -8,7 +8,7 @@ const QUOTES = [
 export default function Testimonials() {
   const doubled = [...QUOTES, ...QUOTES];
   return (
-    <section className="relative bg-ink py-28 md:py-36 overflow-hidden">
+    <section className="relative bg-alabaster-dim py-28 md:py-36 overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 md:px-10 mb-16">
         <p className="eyebrow text-saffron mb-3.5">From Our Buyers</p>
         <h2 className="font-display text-4xl md:text-5xl font-normal">
@@ -23,12 +23,12 @@ export default function Testimonials() {
           {doubled.map((t, i) => (
             <figure
               key={i}
-              className="w-[380px] flex-none bg-ink-light border border-alabaster/[0.08] rounded-3xl p-9"
+              className="w-[380px] flex-none bg-alabaster border border-ink/[0.08] rounded-3xl p-9"
             >
               <blockquote className="font-display italic text-xl leading-snug text-balance">
                 &ldquo;{t.q}&rdquo;
               </blockquote>
-              <figcaption className="mt-6 font-mono text-xs text-alabaster/50">
+              <figcaption className="mt-6 font-mono text-xs text-ink/50">
                 {t.n} — {t.r}
               </figcaption>
             </figure>

@@ -12,7 +12,7 @@ export default function ContactPage() {
   return (
     <main>
       <Nav />
-      <section className="relative bg-ink pt-40 pb-24 bg-grid">
+      <section className="relative bg-alabaster pt-40 pb-24 bg-grid">
         <div className="mx-auto max-w-7xl px-6 md:px-10 grid lg:grid-cols-[1fr_1.2fr] gap-16">
           <div>
             <p className="eyebrow text-saffron mb-4">Trade Desk</p>
@@ -21,33 +21,33 @@ export default function ContactPage() {
               <br />
               <span className="italic text-saffron">first consignment.</span>
             </h1>
-            <p className="text-alabaster/60 leading-relaxed mb-10 max-w-sm">
+            <p className="text-ink/60 leading-relaxed mb-10 max-w-sm">
               Fill in the form and our trade desk will come back with
               indicative pricing, MOQ and lead time — typically within one
               business day.
             </p>
 
-            <div className="space-y-6 font-mono text-sm text-alabaster/70">
+            <div className="space-y-6 font-mono text-sm text-ink/70">
               <div>
-                <p className="eyebrow text-alabaster/40 mb-1">Head Office</p>
+                <p className="eyebrow text-ink/40 mb-1">Head Office</p>
                 <p>Willingdon Island, Kochi, Kerala 682003, India</p>
               </div>
               <div>
-                <p className="eyebrow text-alabaster/40 mb-1">Phone</p>
+                <p className="eyebrow text-ink/40 mb-1">Phone</p>
                 <p>+91 484 220 1994</p>
               </div>
               <div>
-                <p className="eyebrow text-alabaster/40 mb-1">Email</p>
+                <p className="eyebrow text-ink/40 mb-1">Email</p>
                 <p>trade@monsoonmeridian.com</p>
               </div>
               <div>
-                <p className="eyebrow text-alabaster/40 mb-1">Hours</p>
+                <p className="eyebrow text-ink/40 mb-1">Hours</p>
                 <p>Mon–Sat, 9:00–18:00 IST</p>
               </div>
             </div>
           </div>
 
-          <div className="border border-alabaster/10 rounded-3xl p-8 md:p-12 bg-ink-light/40">
+          <div className="border border-ink/10 rounded-3xl p-8 md:p-12 bg-white/40">
             <ContactForm />
           </div>
         </div>
