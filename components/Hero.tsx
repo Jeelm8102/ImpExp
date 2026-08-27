@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion, useMotionValue, useMotionValueEvent, useScroll, useSpring, useTransform } from "framer-motion";
+import { useRef, useState } from "react";
 import Crate from "./Crate";
 
 const WORDS = [
@@ -10,6 +10,51 @@ const WORDS = [
   { text: "Every", delay: 0.46 },
   { text: "longitude.", delay: 0.6 },
 ];
+
+const PARTICLES = Array.from({ length: 22 }, (_, i) => ({
+  id: i,
+  size: Math.random() * 3 + 2,
+  x: Math.random() * 100, // percentage horizontal placement
+  y: Math.random() * 100, // percentage vertical placement
+  depth: Math.random() * 0.75 + 0.25, // speed/depth multiplier
+}));
+
+function CoordinateHUD({ scrollYProgress }: { scrollYProgress: any }) {
+  const [coords, setCoords] = useState("09.93°N · 076.26°E");
+
+  useMotionValueEvent(scrollYProgress, "change", (v: any) => {
+    const points = [
+      { lat: 9.93, lng: 76.26 },  // Kochi (INCOK)
+      { lat: 25.01, lng: 55.06 },  // Jebel Ali (AEJEA)
+      { lat: 51.95, lng: 4.14 },   // Rotterdam (NLRTM)
+      { lat: 40.71, lng: -74.01 }, // New York (USNYC)
+      { lat: 1.29, lng: 103.85 },  // Singapore (SGSIN)
+    ];
+
+    const val = v as number;
+    const segment = Math.min(points.length - 2, Math.floor(val * (points.length - 1)));
+    const segProgress = val * (points.length - 1) - segment;
+
+    const p1 = points[segment];
+    const p2 = points[segment + 1];
+
+    if (!p1 || !p2) return;
+
+    const lat = p1.lat + (p2.lat - p1.lat) * segProgress;
+    const lng = p1.lng + (p2.lng - p1.lng) * segProgress;
+
+    const latStr = Math.abs(lat).toFixed(4).padStart(7, "0") + "°" + (lat >= 0 ? "N" : "S");
+    const lngStr = Math.abs(lng).toFixed(4).padStart(8, "0") + "°" + (lng >= 0 ? "E" : "W");
+
+    setCoords(`${latStr} · ${lngStr}`);
+  });
+
+  return (
+    <div className="font-mono text-[10px] tracking-widest2 text-ink/40 uppercase">
+      ROUTE TELEMETRY: <span className="text-saffron font-semibold font-mono">{coords}</span>
+    </div>
+  );
+}
 
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null);
@@ -20,7 +65,31 @@ export default function Hero() {
   const sceneY = useTransform(scrollYProgress, [0, 1], [0, -40]);
   const sceneOpacity = useTransform(scrollYProgress, [0, 0.9], [1, 0]);
 
-  // Mouse-driven 3D tilt of the crate rig (spring-smoothed)
+  // Scroll-linked individual 3D translations & rotations for depth/separating effect
+  const crate1Z = useTransform(scrollYProgress, [0, 0.85], [0, 180]); // Cardamom flies forward
+  const crate1Y = useTransform(scrollYProgress, [0, 0.85], [0, 60]);   // Cardamom floats down
+  const crate1Rotate = useTransform(scrollYProgress, [0, 0.85], [0, 80]); // extra spin on scroll
+
+  const crate2X = useTransform(scrollYProgress, [0, 0.85], [0, 110]);  // Chili drifts right
+  const crate2Y = useTransform(scrollYProgress, [0, 0.85], [0, -90]);   // Chili drifts up
+  const crate2Z = useTransform(scrollYProgress, [0, 0.85], [0, -120]); // Chili recedes
+  const crate2Rotate = useTransform(scrollYProgress, [0, 0.85], [0, -100]);
+
+  const crate3X = useTransform(scrollYProgress, [0, 0.85], [0, -90]);  // Turmeric drifts left
+  const crate3Y = useTransform(scrollYProgress, [0, 0.85], [0, -140]);  // Turmeric drifts up
+  const crate3Z = useTransform(scrollYProgress, [0, 0.85], [0, -80]);   // Turmeric recedes
+  const crate3Rotate = useTransform(scrollYProgress, [0, 0.85], [0, 60]);
+
+  // Orbit rings tilt and rotate on scroll
+  const ring1RotateX = useTransform(scrollYProgress, [0, 0.85], [78, 88]);
+  const ring1RotateZ = useTransform(scrollYProgress, [0, 0.85], [0, 90]);
+  const ring2RotateX = useTransform(scrollYProgress, [0, 0.85], [70, 52]);
+  const ring2RotateZ = useTransform(scrollYProgress, [0, 0.85], [30, -60]);
+
+  // Text vertical parallax translation
+  const textY = useTransform(scrollYProgress, [0, 0.85], [0, -85]);
+
+  // Mouse & Touch pointer-driven 3D tilt of the crate rig (spring-smoothed)
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
   const smx = useSpring(mx, { stiffness: 55, damping: 20 });
@@ -30,7 +99,7 @@ export default function Hero() {
   const auroraX = useTransform(smx, (v) => v * -14);
   const auroraY = useTransform(smy, (v) => v * -14);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
     const rect = ref.current?.getBoundingClientRect();
     if (!rect) return;
     mx.set(e.clientX / rect.width - 0.5);
@@ -40,7 +109,7 @@ export default function Hero() {
   return (
     <section
       ref={ref}
-      onMouseMove={handleMouseMove}
+      onPointerMove={handlePointerMove}
       className="relative h-[100svh] min-h-[680px] w-full overflow-hidden bg-alabaster"
     >
       {/* Aurora blobs — muted ochre / clay / sage instead of the old saturated cinematic glow */}
@@ -53,98 +122,179 @@ export default function Hero() {
       {/* Fine meridian/latitude grid */}
       <div className="absolute inset-0 bg-grid" />
 
+      {/* Floating Parallax Spice Particles */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-[4]">
+        {PARTICLES.map((p) => (
+          <motion.div
+            key={p.id}
+            style={{
+              left: `${p.x}%`,
+              top: `${p.y}%`,
+              width: p.size,
+              height: p.size,
+              y: useTransform(scrollYProgress, [0, 1], [0, -160 * p.depth]),
+            }}
+            className="absolute rounded-full bg-saffron/20 blur-[0.5px]"
+          />
+        ))}
+      </div>
+
       {/* 3D crate scene — signature visual, right-biased on desktop */}
       <motion.div
         style={{ scale: sceneScale, y: sceneY, opacity: sceneOpacity }}
         className="scene-perspective absolute z-[3] top-0 -right-[4%] w-full md:w-[64%] h-full opacity-[0.55] md:opacity-100"
       >
-        <motion.div style={{ rotateX, rotateY }} className="rig-3d">
-          <Crate
-            size={170}
-            accent="sage"
-            x={-150}
-            y={10}
-            z={60}
-            spinDuration={26}
-            bobDuration={7}
-            label={
-              <>
-                CARDAMOM
-                <br />
-                <b className="font-medium opacity-80">LOT · WS-04</b>
-                <br />
-                9.9°N 76.3°E → RTM
-              </>
-            }
-          />
-          <Crate
-            size={130}
-            accent="clay"
-            x={150}
-            y={-50}
-            z={-40}
-            spinDuration={32}
-            reverse
-            bobDuration={8.4}
-            bobDelay={-2}
-            label={
-              <>
-                CHILI
-                <br />
-                <b className="font-medium opacity-80">LOT · GS-02</b>
-                <br />
-                16.3°N 80.4°E → JEA
-              </>
-            }
-          />
-          <Crate
-            size={100}
-            accent="ochre"
-            x={-10}
-            y={-170}
-            z={-110}
-            spinDuration={20}
-            bobDuration={6.2}
-            bobDelay={-4}
-            label={
-              <>
-                TURMERIC
-                <br />
-                <b className="font-medium opacity-80">LOT · GS-01</b>
-              </>
-            }
-          />
+        <div className="absolute inset-0 flex items-center justify-center scale-[0.66] sm:scale-75 md:scale-100 transition-transform duration-500">
+          <motion.div style={{ rotateX, rotateY }} className="rig-3d left-1/2 top-[62%] md:top-1/2">
+            {/* Cardamom Crate with individual Z/Y/rotate scroll transforms + hover lift */}
+            <motion.div
+              style={{ y: crate1Y, z: crate1Z, rotateY: crate1Rotate, transformStyle: "preserve-3d" }}
+              className="absolute"
+            >
+              <motion.div
+                whileHover={{ scale: 1.1, y: -12, transition: { duration: 0.3 } }}
+                className="cursor-pointer"
+                style={{ transformStyle: "preserve-3d" }}
+              >
+                <Crate
+                  size={170}
+                  accent="sage"
+                  x={-150}
+                  y={10}
+                  z={60}
+                  spinDuration={26}
+                  bobDuration={7}
+                  label={
+                    <>
+                      CARDAMOM
+                      <br />
+                      <b className="font-medium opacity-80">LOT · WS-04</b>
+                      <br />
+                      9.9°N 76.3°E → RTM
+                    </>
+                  }
+                />
+              </motion.div>
+            </motion.div>
 
-          <div
-            className="orbit-ring"
-            style={{ width: 520, height: 520, marginLeft: -260, marginTop: -260, animation: "ringSpin 40s linear infinite" }}
-          />
-          <div
-            className="orbit-ring"
-            style={{
-              width: 380,
-              height: 380,
-              marginLeft: -190,
-              marginTop: -190,
-              borderColor: "rgba(91,115,96,.25)",
-              transform: "rotateX(70deg) rotateZ(30deg)",
-              animation: "ringSpin 30s linear infinite reverse",
-            }}
-          />
-        </motion.div>
+            {/* Chili Crate with individual X/Y/Z/rotate scroll transforms + hover lift */}
+            <motion.div
+              style={{ x: crate2X, y: crate2Y, z: crate2Z, rotateY: crate2Rotate, transformStyle: "preserve-3d" }}
+              className="absolute"
+            >
+              <motion.div
+                whileHover={{ scale: 1.1, y: -12, transition: { duration: 0.3 } }}
+                className="cursor-pointer"
+                style={{ transformStyle: "preserve-3d" }}
+              >
+                <Crate
+                  size={130}
+                  accent="clay"
+                  x={150}
+                  y={-50}
+                  z={-40}
+                  spinDuration={32}
+                  reverse
+                  bobDuration={8.4}
+                  bobDelay={-2}
+                  label={
+                    <>
+                      CHILI
+                      <br />
+                      <b className="font-medium opacity-80">LOT · GS-02</b>
+                      <br />
+                      16.3°N 80.4°E → JEA
+                    </>
+                  }
+                />
+              </motion.div>
+            </motion.div>
+
+            {/* Turmeric Crate with individual X/Y/Z/rotate scroll transforms + hover lift */}
+            <motion.div
+              style={{ x: crate3X, y: crate3Y, z: crate3Z, rotateY: crate3Rotate, transformStyle: "preserve-3d" }}
+              className="absolute"
+            >
+              <motion.div
+                whileHover={{ scale: 1.1, y: -12, transition: { duration: 0.3 } }}
+                className="cursor-pointer"
+                style={{ transformStyle: "preserve-3d" }}
+              >
+                <Crate
+                  size={100}
+                  accent="ochre"
+                  x={-10}
+                  y={-170}
+                  z={-110}
+                  spinDuration={20}
+                  bobDuration={6.2}
+                  bobDelay={-4}
+                  label={
+                    <>
+                      TURMERIC
+                      <br />
+                      <b className="font-medium opacity-80">LOT · GS-01</b>
+                    </>
+                  }
+                />
+              </motion.div>
+            </motion.div>
+
+            {/* Orbit Ring 1: Scroll-linked tilt (outer motion.div) + constant Z spin (inner div) */}
+            <motion.div
+              style={{
+                rotateX: ring1RotateX,
+                rotateZ: ring1RotateZ,
+                transformStyle: "preserve-3d",
+              }}
+              className="absolute left-0 top-0"
+            >
+              <div
+                className="orbit-ring animate-[spin_40s_linear_infinite]"
+                style={{ width: 520, height: 520, marginLeft: -260, marginTop: -260 }}
+              />
+            </motion.div>
+
+            {/* Orbit Ring 2: Scroll-linked tilt (outer motion.div) + constant Z spin reverse (inner div) */}
+            <motion.div
+              style={{
+                rotateX: ring2RotateX,
+                rotateZ: ring2RotateZ,
+                transformStyle: "preserve-3d",
+              }}
+              className="absolute left-0 top-0"
+            >
+              <div
+                className="orbit-ring animate-[spin_30s_linear_infinite_reverse]"
+                style={{
+                  width: 380,
+                  height: 380,
+                  marginLeft: -190,
+                  marginTop: -190,
+                  borderColor: "rgba(91,115,96,.25)",
+                }}
+              />
+            </motion.div>
+          </motion.div>
+        </div>
         <div className="scene-ground" />
       </motion.div>
 
       {/* Content */}
-      <motion.div style={{ opacity: contentOpacity }} className="relative z-[5] h-full mx-auto max-w-7xl px-6 md:px-10 flex flex-col justify-center">
+      <motion.div
+        style={{ opacity: contentOpacity, y: textY }}
+        className="relative z-[5] h-full mx-auto max-w-7xl px-6 md:px-10 flex flex-col justify-center"
+      >
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="flex items-center gap-3.5 mb-6"
+          className="flex flex-wrap items-center gap-3.5 mb-6"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-saffron shadow-[0_0_12px_#C98A2B]" />
           <span className="eyebrow text-ink/60">Est. 1994 · Charted from 76°E</span>
+          <span className="hidden sm:inline text-ink/20">|</span>
+          <CoordinateHUD scrollYProgress={scrollYProgress} />
         </motion.div>
 
         <h1 className="font-display font-normal text-[13vw] leading-[0.94] md:text-[6.6rem] lg:text-[5.8rem]">

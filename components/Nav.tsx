@@ -23,11 +23,10 @@ export default function Nav() {
 
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-[100] transition-colors duration-500 ${
-        scrolled ? "bg-alabaster/75 backdrop-blur-xl border-b border-ink/[0.08]" : "bg-transparent"
-      }`}
+      className={`fixed top-0 inset-x-0 z-[100] transition-colors duration-500 ${scrolled ? "bg-alabaster/75 backdrop-blur-xl border-b border-ink/[0.08]" : "bg-transparent"
+        }`}
     >
-      <nav className="mx-auto max-w-7xl px-6 md:px-10 h-[88px] flex items-center justify-between">
+      <nav className="mx-auto max-w-7xl px-6 md:px-10 h-[72px] flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5 font-display text-[1.15rem]">
           <svg width="30" height="30" viewBox="0 0 40 40" fill="none" className="text-saffron">
             <circle cx="20" cy="20" r="18.5" stroke="currentColor" strokeWidth="1" />

@@ -133,8 +133,6 @@ body {
 }
 .rig-3d {
   position: absolute;
-  left: 50%;
-  top: 50%;
   width: 1px;
   height: 1px;
   transform-style: preserve-3d;
