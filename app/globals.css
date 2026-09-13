@@ -106,8 +106,6 @@ body {
     linear-gradient(rgba(20, 27, 46, 0.035) 1px, transparent 1px),
     linear-gradient(90deg, rgba(20, 27, 46, 0.035) 1px, transparent 1px);
   background-size: 64px 64px;
-  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 30%, transparent 80%);
-  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 30%, transparent 80%);
 }
 
 /* scroll-drop indicator used in the hero scroll cue */
@@ -142,9 +140,18 @@ body {
   position: absolute;
   left: 0;
   top: 0;
+  width: 0;
+  height: 0;
+  transform-origin: 0 0 0;
   transform-style: preserve-3d;
 }
 .crate-float {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  transform-origin: 0 0 0;
   transform-style: preserve-3d;
   animation: crateBob 7s ease-in-out infinite;
 }
@@ -182,6 +189,30 @@ body {
 }
 .cube-face-plain {
   background-image: repeating-linear-gradient(45deg, rgba(20, 27, 46, 0.03) 0 6px, transparent 6px 16px);
+}
+
+.container-3d-spin {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  transform-origin: 0 0 0;
+  transform-style: preserve-3d;
+  animation: containerSpin 26s linear infinite;
+}
+@keyframes containerSpin {
+  from { transform: rotateX(8deg) rotateY(0deg); }
+  to { transform: rotateX(8deg) rotateY(360deg); }
+}
+
+.container-face {
+  position: absolute;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  box-sizing: border-box;
+  transform-style: preserve-3d;
+  outline: 1px solid transparent;
 }
 
 .orbit-ring {

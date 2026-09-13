@@ -25,15 +25,27 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Monsoon & Meridian — Spice & Food Exports Since 1994",
+  title: "ALPHA IMPEXX — Premium Spice & Agricultural Commodity Exports | Surat, Gujarat",
   description:
-    "Monsoon & Meridian sources, processes, and exports premium spices, pulses, and food staples from India's growing belts to over 40 countries. FSSAI, ISO 22000 & Spice Board certified.",
+    "ALPHA IMPEXX is an export & trading company based in Surat, Gujarat, supplying premium spice powders, whole spices, dried herbs, and culinary pastes to international buyers globally via Hazira & Mundra ports.",
+  icons: {
+    icon: "/logo.png",
+    apple: "/logo.png",
+  },
+  openGraph: {
+    title: "ALPHA IMPEXX — Premium Spice & Agricultural Commodity Exports",
+    description: "Exporting premium Indian spices, herbs, and agricultural commodities globally.",
+    images: ["/logo-white-bg.jpg"],
+  },
   keywords: [
+    "ALPHA IMPEXX",
     "spice exporter India",
-    "food export company",
-    "bulk spice supplier",
-    "import export spices",
-    "Indian spice trade",
+    "Surat export company",
+    "bulk spice supplier Gujarat",
+    "powder spices export",
+    "whole spices exporter",
+    "Hazira port shipping",
+    "Mundra port export",
   ],
 };
 

@@ -25,10 +25,19 @@ export default function CTA() {
             Request a Quote
           </a>
           <a
-            href="mailto:trade@monsoonmeridian.com"
+            href="https://api.whatsapp.com/send?phone=91%209879825777"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="border border-cardamom/50 text-cardamom bg-cardamom/[0.04] px-8 py-4 rounded-full text-sm hover:bg-cardamom hover:text-white transition-colors inline-flex items-center gap-2"
+          >
+            <span>WhatsApp Us</span>
+            <span>↗</span>
+          </a>
+          <a
+            href="mailto:info@alphaimpexx.in"
             className="border border-ink/25 px-8 py-4 rounded-full text-sm hover:border-saffron hover:text-saffron hover:bg-saffron/[0.06] transition-colors"
           >
-            trade@monsoonmeridian.com
+            info@alphaimpexx.in
           </a>
         </div>
       </div>

@@ -20,11 +20,11 @@ const PARTICLES = Array.from({ length: 22 }, (_, i) => ({
 }));
 
 function CoordinateHUD({ scrollYProgress }: { scrollYProgress: any }) {
-  const [coords, setCoords] = useState("09.93°N · 076.26°E");
+  const [coords, setCoords] = useState("21.17°N · 072.83°E");
 
   useMotionValueEvent(scrollYProgress, "change", (v: any) => {
     const points = [
-      { lat: 9.93, lng: 76.26 },  // Kochi (INCOK)
+      { lat: 21.17, lng: 72.83 },  // Surat / Hazira (INHAZ)
       { lat: 25.01, lng: 55.06 },  // Jebel Ali (AEJEA)
       { lat: 51.95, lng: 4.14 },   // Rotterdam (NLRTM)
       { lat: 40.71, lng: -74.01 }, // New York (USNYC)
@@ -142,13 +142,13 @@ export default function Hero() {
       {/* Content */}
       <motion.div
         style={{ opacity: contentOpacity, y: textY }}
-        className="relative z-[5] w-full h-auto md:h-full mx-auto max-w-7xl px-6 md:px-10 flex flex-col justify-center pt-28 pb-8 md:py-0"
+        className="relative z-[5] w-full h-auto md:h-full mx-auto max-w-7xl px-5 sm:px-8 md:px-10 flex flex-col justify-center pt-20 pb-4 sm:pt-24 sm:pb-6 md:py-0"
       >
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="flex flex-wrap items-center gap-3.5 mb-6"
+          className="flex flex-wrap items-center gap-3.5 mb-4 sm:mb-6"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-saffron shadow-[0_0_12px_#C98A2B]" />
           <span className="eyebrow text-ink/60">Est. 1994 · Charted from 76°E</span>
@@ -156,7 +156,7 @@ export default function Hero() {
           <CoordinateHUD scrollYProgress={scrollYProgress} />
         </motion.div>
 
-        <h1 className="font-display font-normal text-[13vw] leading-[0.94] md:text-[6.6rem] lg:text-[5.8rem]">
+        <h1 className="font-display font-normal text-[12vw] leading-[0.95] sm:text-[10vw] md:text-[6.2rem] lg:text-[5.8rem]">
           {WORDS.map((w, i) => (
             <span key={i}>
               <motion.span
@@ -177,10 +177,10 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.1 }}
-          className="mt-8 max-w-xl text-ink/60 text-base md:text-lg font-light leading-relaxed"
+          className="mt-5 sm:mt-6 md:mt-8 max-w-lg text-ink/60 text-sm sm:text-base md:text-lg font-light leading-relaxed"
         >
-          Every shipment starts at the same coordinates — Kochi&apos;s spice
-          belt — and is charted from there to your port: sourced, lab-certified,
+          Every shipment starts at the same coordinates — Gujarat&apos;s agricultural &amp; spice
+          corridors — and is charted from Hazira &amp; Mundra to your port: sourced, lab-certified,
           and tracked across whichever meridian your business sits on.
         </motion.p>
 
@@ -188,17 +188,17 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.3 }}
-          className="mt-11 flex flex-wrap items-center gap-4"
+          className="mt-6 sm:mt-8 md:mt-11 flex flex-wrap items-center gap-4"
         >
           <a
             href="#showcase"
-            className="bg-ink text-alabaster px-8 py-4 rounded-full font-medium text-sm hover:-translate-y-0.5 hover:shadow-[0_10px_30px_rgba(20,27,46,0.15)] hover:bg-paprika transition-all"
+            className="bg-ink text-alabaster px-7 sm:px-8 py-3.5 sm:py-4 rounded-full font-medium text-xs sm:text-sm hover:-translate-y-0.5 hover:shadow-[0_10px_30px_rgba(20,27,46,0.15)] hover:bg-paprika transition-all"
           >
             Explore the Catalog
           </a>
           <a
-            href="/contact"
-            className="border border-ink/20 px-8 py-4 rounded-full text-sm hover:border-saffron hover:text-saffron hover:bg-saffron/[0.06] transition-colors"
+            href="#contact"
+            className="border border-ink/20 px-7 sm:px-8 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm hover:border-saffron hover:text-saffron hover:bg-saffron/[0.06] transition-colors"
           >
             Talk to Trade Desk →
           </a>
@@ -208,14 +208,14 @@ export default function Hero() {
       {/* 3D crate scene — signature visual, right-biased on desktop */}
       <motion.div
         style={{ scale: sceneScale, y: sceneY, opacity: sceneOpacity }}
-        className="scene-perspective relative md:absolute z-[3] top-0 left-0 right-0 md:left-auto md:-right-[4%] w-full md:w-[64%] h-[320px] md:h-full opacity-100"
+        className="scene-perspective relative md:absolute z-[3] top-0 left-0 right-0 md:left-auto md:-right-[2%] w-full md:w-[60%] lg:w-[64%] h-[300px] sm:h-[350px] md:h-full opacity-100 pointer-events-auto"
       >
-        <div className="absolute inset-0 flex items-center justify-center scale-[0.66] sm:scale-75 md:scale-100 transition-transform duration-500">
+        <div className="absolute inset-0 flex items-center justify-center scale-[0.6] sm:scale-75 md:scale-[0.88] lg:scale-100 transition-transform duration-500">
           <motion.div style={{ rotateX, rotateY }} className="rig-3d left-1/2 top-1/2">
-            {/* Cardamom Crate with individual Z/Y/rotate scroll transforms + hover lift */}
+            {/* Container 1: Green Cardamom (Evergreen Marine 20ft Container) */}
             <motion.div
               style={{ y: crate1Y, z: crate1Z, rotateY: crate1Rotate, transformStyle: "preserve-3d" }}
-              className="absolute"
+              className="absolute left-0 top-0"
             >
               <motion.div
                 whileHover={{ scale: 1.1, y: -12, transition: { duration: 0.3 } }}
@@ -223,30 +223,24 @@ export default function Hero() {
                 style={{ transformStyle: "preserve-3d" }}
               >
                 <Crate
-                  size={170}
+                  length={180}
+                  height={76}
+                  depth={76}
                   accent="sage"
+                  commodity="GREEN CARDAMOM"
                   x={-150}
                   y={10}
                   z={60}
                   spinDuration={26}
                   bobDuration={7}
-                  label={
-                    <>
-                      CARDAMOM
-                      <br />
-                      <b className="font-medium opacity-80">LOT · WS-04</b>
-                      <br />
-                      9.9°N 76.3°E → RTM
-                    </>
-                  }
                 />
               </motion.div>
             </motion.div>
 
-            {/* Chili Crate with individual X/Y/Z/rotate scroll transforms + hover lift */}
+            {/* Container 2: Kashmiri Chili (Terracotta Paprika 20ft Container) */}
             <motion.div
               style={{ x: crate2X, y: crate2Y, z: crate2Z, rotateY: crate2Rotate, transformStyle: "preserve-3d" }}
-              className="absolute"
+              className="absolute left-0 top-0"
             >
               <motion.div
                 whileHover={{ scale: 1.1, y: -12, transition: { duration: 0.3 } }}
@@ -254,8 +248,11 @@ export default function Hero() {
                 style={{ transformStyle: "preserve-3d" }}
               >
                 <Crate
-                  size={130}
+                  length={150}
+                  height={64}
+                  depth={64}
                   accent="clay"
+                  commodity="KASHMIRI CHILI"
                   x={150}
                   y={-50}
                   z={-40}
@@ -263,23 +260,14 @@ export default function Hero() {
                   reverse
                   bobDuration={8.4}
                   bobDelay={-2}
-                  label={
-                    <>
-                      CHILI
-                      <br />
-                      <b className="font-medium opacity-80">LOT · GS-02</b>
-                      <br />
-                      16.3°N 80.4°E → JEA
-                    </>
-                  }
                 />
               </motion.div>
             </motion.div>
 
-            {/* Turmeric Crate with individual X/Y/Z/rotate scroll transforms + hover lift */}
+            {/* Container 3: Pure Turmeric (Golden Saffron 20ft Container) */}
             <motion.div
               style={{ x: crate3X, y: crate3Y, z: crate3Z, rotateY: crate3Rotate, transformStyle: "preserve-3d" }}
-              className="absolute"
+              className="absolute left-0 top-0"
             >
               <motion.div
                 whileHover={{ scale: 1.1, y: -12, transition: { duration: 0.3 } }}
@@ -287,21 +275,17 @@ export default function Hero() {
                 style={{ transformStyle: "preserve-3d" }}
               >
                 <Crate
-                  size={100}
+                  length={120}
+                  height={52}
+                  depth={52}
                   accent="ochre"
+                  commodity="PURE TURMERIC"
                   x={-10}
-                  y={-170}
+                  y={-140}
                   z={-110}
                   spinDuration={20}
                   bobDuration={6.2}
                   bobDelay={-4}
-                  label={
-                    <>
-                      TURMERIC
-                      <br />
-                      <b className="font-medium opacity-80">LOT · GS-01</b>
-                    </>
-                  }
                 />
               </motion.div>
             </motion.div>

@@ -1,14 +1,15 @@
 const ITEMS = [
-  "Cardamom",
-  "Turmeric",
-  "Black Pepper",
-  "Cumin",
-  "Chili",
-  "Coriander",
-  "Fennel",
-  "Cloves",
-  "Basmati Rice",
-  "Sesame",
+  "Powder Spices",
+  "Turmeric & Chili Powder",
+  "Whole Spices",
+  "Black Peppercorns & Cumin",
+  "Dried Leaves & Herbs",
+  "Bay Leaves (Tej Patta) & Mint",
+  "Paste & Fresh Spices",
+  "Ginger-Garlic & Tamarind Paste",
+  "Fresh Turmeric Root",
+  "Cardamom Pods & Cloves",
+  "Coriander & Amchur Powder",
 ];
 
 export default function Marquee() {

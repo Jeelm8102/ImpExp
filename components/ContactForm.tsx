@@ -1,9 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 
-export default function ContactForm() {
+function FormContent() {
+  const searchParams = useSearchParams();
   const [submitted, setSubmitted] = useState(false);
+  const [productVal, setProductVal] = useState("");
+
+  useEffect(() => {
+    const p = searchParams.get("product");
+    if (p) {
+      setProductVal(p);
+    }
+  }, [searchParams]);
 
   if (submitted) {
     return (
@@ -36,15 +46,28 @@ export default function ContactForm() {
         <Field label="Destination port" name="port" placeholder="Rotterdam, NL" />
       </div>
       <div className="grid sm:grid-cols-2 gap-8">
-        <Field label="Product(s) of interest" name="products" placeholder="Cardamom, Turmeric powder" />
+        <div>
+          <label htmlFor="products" className="eyebrow text-ink/50 block mb-3">
+            Product(s) of interest
+          </label>
+          <input
+            id="products"
+            name="products"
+            type="text"
+            value={productVal}
+            onChange={(e) => setProductVal(e.target.value)}
+            placeholder="e.g. Powder Spices, Whole Spices, Dried Herbs"
+            className="w-full bg-transparent border-b border-ink/25 focus:border-saffron outline-none py-2 text-ink placeholder:text-ink/30 transition-colors"
+          />
+        </div>
         <Field label="Estimated volume" name="volume" placeholder="1x 20ft container / month" />
       </div>
       <div>
-        <label className="eyebrow text-ink/50 block mb-3">Message</label>
+        <label className="eyebrow text-ink/50 block mb-3">Message / Specifications</label>
         <textarea
           name="message"
           rows={4}
-          placeholder="Tell us about your requirement, target price and timeline."
+          placeholder="Tell us about your target grading, packaging requirements, target price and shipment timeline."
           className="w-full bg-transparent border-b border-ink/25 focus:border-saffron outline-none py-2 text-ink placeholder:text-ink/30 transition-colors resize-none"
         />
       </div>
@@ -55,6 +78,14 @@ export default function ContactForm() {
         Submit Inquiry
       </button>
     </form>
+  );
+}
+
+export default function ContactForm() {
+  return (
+    <Suspense fallback={<div className="py-12 text-center text-ink/40 font-mono text-xs">Loading form...</div>}>
+      <FormContent />
+    </Suspense>
   );
 }
 

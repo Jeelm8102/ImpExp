@@ -4,11 +4,10 @@ import { motion, useMotionValueEvent, useScroll, useTransform } from "framer-mot
 import { useRef, useState } from "react";
 
 const PORTS = [
-  { name: "Kochi", code: "INCOK", coords: "9.93°N 76.26°E", x: 180, y: 430, tag: "Origin — Kochi sourcing hub" },
-  { name: "Jebel Ali", code: "AEJEA", coords: "25.01°N 55.06°E", x: 340, y: 260, tag: "Gulf transshipment hub" },
-  { name: "Rotterdam", code: "NLRTM", coords: "51.95°N 4.14°E", x: 400, y: 150, tag: "European gateway" },
-  { name: "New York", code: "USNYC", coords: "40.71°N 74.01°W", x: 560, y: 230, tag: "North American hub" },
-  { name: "Singapore", code: "SGSIN", coords: "1.29°N 103.85°E", x: 640, y: 470, tag: "Far East distribution" },
+  { name: "Hajira / Surat", code: "INHAZ", coords: "21.17°N 72.83°E", x: 200, y: 440, tag: "Hajira / Surat export gateway & bulk terminal" },
+  { name: "Mundra", code: "INMUN", coords: "22.84°N 69.70°E", x: 320, y: 260, tag: "Mundra deep-water container terminal" },
+  { name: "Mumbai", code: "INNSA", coords: "18.95°N 72.95°E", x: 480, y: 380, tag: "Mumbai / JNPT western maritime hub" },
+  { name: "Chennai", code: "INMAA", coords: "13.08°N 80.29°E", x: 620, y: 470, tag: "Chennai eastern maritime gateway" },
 ];
 
 function arcPath(a: (typeof PORTS)[number], b: (typeof PORTS)[number]) {
@@ -23,12 +22,11 @@ export default function Globe() {
 
   const segments = PORTS.length - 1;
   const seg = 1 / segments;
-  // one useTransform per arc segment (fixed count = 4)
+  // one useTransform per arc segment (fixed count = 3)
   const arc0 = useTransform(scrollYProgress, [0 * seg, 1 * seg], [0, 1]);
   const arc1 = useTransform(scrollYProgress, [1 * seg, 2 * seg], [0, 1]);
   const arc2 = useTransform(scrollYProgress, [2 * seg, 3 * seg], [0, 1]);
-  const arc3 = useTransform(scrollYProgress, [3 * seg, 4 * seg], [0, 1]);
-  const arcProgress = [arc0, arc1, arc2, arc3];
+  const arcProgress = [arc0, arc1, arc2];
 
   const [activeIdx, setActiveIdx] = useState(0);
   useMotionValueEvent(scrollYProgress, "change", (v) => {
@@ -44,7 +42,7 @@ export default function Globe() {
         <div className="relative z-[5] mx-auto max-w-7xl px-6 md:px-10 w-full">
           <p className="eyebrow text-saffron mb-3.5">Trade Network</p>
           <h2 className="font-display text-4xl md:text-5xl font-normal leading-tight">
-            Five ports. One
+            Four ports. One
             <br />
             <span className="italic text-saffron">continuous route.</span>
           </h2>
