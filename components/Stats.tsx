@@ -4,10 +4,10 @@ import { motion, useInView, useMotionValue, useSpring } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 const STATS = [
-  { value: 40, suffix: "+", label: "Countries served" },
-  { value: 2400, suffix: "+", label: "Farmer partners" },
-  { value: 120, suffix: "+", label: "SKUs exported" },
-  { value: 31, suffix: "", label: "Years in trade" },
+  { value: 12, suffix: "+", label: "Target export markets" },
+  { value: 250, suffix: "+", label: "Partner farm network" },
+  { value: 24, suffix: "+", label: "Export-grade SKUs" },
+  // { value: 2026, suffix: "", label: "Year established", isYear: true },
 ];
 
 function Counter({ value, suffix }: { value: number; suffix: string }) {
@@ -34,7 +34,7 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
 export default function Stats() {
   return (
     <section className="relative bg-alabaster-dim text-ink py-24 md:py-28">
-      <div className="mx-auto max-w-7xl px-6 md:px-10 grid grid-cols-2 md:grid-cols-4 gap-10">
+      <div className="mx-auto max-w-7xl px-6 md:px-10 grid grid-cols-2 md:grid-cols-3 gap-10">
         {STATS.map((s, i) => (
           <motion.div
             key={s.label}

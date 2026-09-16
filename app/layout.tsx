@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -59,6 +60,7 @@ export default function RootLayout({
       <body className="font-body bg-alabaster text-ink antialiased">
         <div className="grain-overlay" />
         {children}
+        <FloatingWhatsApp />
       </body>
     </html>
   );

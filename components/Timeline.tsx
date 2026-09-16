@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 const STEPS = [
-  { n: "01 / SOURCING", title: "Direct farmer procurement", desc: "We buy at harvest from 2,400+ registered farmer partners across four growing belts — priced by grade, not blended." },
+  { n: "01 / SOURCING", title: "Direct farmer procurement", desc: "We buy at harvest from 250+ registered farmer partners across four growing belts — priced by grade, not blended." },
   { n: "02 / GRADING", title: "Cleaning & grading", desc: "Mechanical sorting by size, colour and moisture content before anything touches a warehouse floor." },
   { n: "03 / TESTING", title: "Lab certification", desc: "Pesticide residue, aflatoxin and microbial screening at NABL-accredited labs, on every lot." },
   { n: "04 / PACKING", title: "Buyer-spec packing", desc: "Food-grade bulk, retail-ready or private-label packaging, built to your market's requirements." },

@@ -151,7 +151,7 @@ export default function Hero() {
           className="flex flex-wrap items-center gap-3.5 mb-4 sm:mb-6"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-saffron shadow-[0_0_12px_#C98A2B]" />
-          <span className="eyebrow text-ink/60">Est. 1994 · Charted from 76°E</span>
+          <span className="eyebrow text-ink/60">Est. 2026 · Charted from 76°E</span>
           <span className="hidden sm:inline text-ink/20">|</span>
           <CoordinateHUD scrollYProgress={scrollYProgress} />
         </motion.div>

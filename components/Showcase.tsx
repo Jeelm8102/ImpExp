@@ -111,16 +111,16 @@ const PRODUCTS: ProductItem[] = [
     lot: "LOT-PF",
     name: "Paste & Fresh Spices",
     tagline: "Ready-to-Use Pastes · Fresh Roots",
-    desc: "Ready-to-use pastes and fresh roots that bring authentic Indian flavor to any kitchen.",
+    desc: "Ready-to-use pastes and fresh roots delivering authentic Indian flavor to any kitchen.",
     from: "from-saffron/25",
     accentColor: "#C98A2B",
     image: "/categories/paste_fresh_spices.jpg",
-    keyHighlights: ["Ginger-Garlic Paste", "Tamarind Paste", "Fresh Turmeric Root", "Fresh Ginger Root"],
+    keyHighlights: ["Ginger-Garlic Paste", "Tamarind Paste", "Fresh Ginger Root"],
     products: [
       { name: "Ginger-Garlic Paste", image: "/products/ginger_garlic_paste.jpg", spec: "Homogeneous Culinary Blend" },
       { name: "Tamarind Paste", image: "/products/tamarind_paste.jpg", spec: "Pure Dark Concentrated Pulp" },
-      { name: "Fresh Turmeric Root", image: "/products/fresh_turmeric.jpg", spec: "Raw Golden Rhizomes" },
       { name: "Fresh Ginger Root", image: "/products/fresh_ginger.jpg", spec: "Washed & Cleaned Rhizomes" },
+      { name: "Fresh Turmeric Root", image: "/products/fresh_turmeric.jpg", spec: "Raw Golden Rhizomes" },
     ],
     packaging: [
       "Aseptic Bag-in-Box / Food-grade Drums (20kg–220kg)",
@@ -162,14 +162,15 @@ export default function Showcase() {
 
   return (
     <section id="showcase" ref={sectionRef} className="relative bg-alabaster-dim" style={{ height: "340vh" }}>
-      {/* <div className="sticky top-6 h-[100svh] flex flex-col justify-center overflow-hidden"> */}
-      <div className="sticky top-0 h-[100svh] pt-12 sm:pt-14 md:pt-16 flex flex-col justify-center overflow-hidden">
+      <div className="sticky top-0 h-[100svh] flex flex-col justify-between overflow-hidden pt-12 sm:pt-14 md:pt-12 pb-3 sm:pb-4">
         {/* Section Header */}
-        <div className="relative z-[5] mx-auto max-w-7xl px-6 md:px-10 pt-0 pb-8 w-full">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div className="relative z-[5] mx-auto max-w-7xl px-6 md:px-10 w-full flex-none pb-2 sm:pb-3">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-2 sm:gap-4">
             <div>
-              <p className="eyebrow text-saffron mb-2 font-semibold">The Catalog · What We Export</p>
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-normal leading-tight text-balance">
+              <p className="eyebrow text-saffron mb-1.5 font-semibold text-[11px] sm:text-xs uppercase tracking-widest">
+                The Catalog · What We Export
+              </p>
+              <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal leading-tight text-balance">
                 Four categories, one
                 <span className="italic text-saffron block sm:inline sm:ml-2">export standard.</span>
               </h2>
@@ -178,46 +179,48 @@ export default function Showcase() {
         </div>
 
         {/* Horizontal Carousel Track */}
-        <div className="relative flex items-center overflow-hidden">
-          <motion.div ref={trackRef} style={{ x }} className="flex gap-6 md:gap-8 px-[6vw]">
+        <div className="relative flex-1 min-h-0 flex items-center overflow-hidden py-3 sm:py-4">
+          <motion.div ref={trackRef} style={{ x }} className="flex gap-5 sm:gap-6 md:gap-7 px-[6vw] py-3 items-center">
             {PRODUCTS.map((p) => (
               <div
                 key={p.lot}
                 onClick={() => setSelectedProduct(p)}
-                className={`group relative flex-none w-[min(350px,78vw)] sm:w-[350px] md:w-[420px] h-[58vh] sm:h-[62vh] md:h-[66vh] min-h-[430px] sm:min-h-[480px] md:min-h-[520px] max-h-[600px] rounded-3xl p-7 md:p-6 flex flex-col justify-between overflow-hidden border border-ink/[0.08] bg-gradient-to-br ${p.from} to-alabaster transition-all duration-500 hover:shadow-[0_24px_60px_rgba(20,27,46,0.12)] hover:-translate-y-1.5 cursor-pointer`}
+                className={`group relative flex-none w-[min(385px,85vw)] sm:w-[380px] md:w-[395px] lg:w-[410px] h-[min(530px,calc(100svh-170px))] min-h-[455px] max-h-[535px] rounded-[24px] sm:rounded-[28px] p-5 sm:p-6 flex flex-col justify-between border border-ink/[0.08] bg-gradient-to-br ${p.from} to-alabaster shadow-[0_6px_25px_rgba(20,27,46,0.06)] hover:shadow-[0_22px_50px_rgba(20,27,46,0.13)] hover:-translate-y-2 hover:border-ink/20 transition-all duration-300 ease-out cursor-pointer select-none`}
               >
                 <div>
                   {/* Framed Image Container */}
-                  <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden mb-5 border border-ink/[0.06] shadow-sm bg-ink/5">
+                  <div className="relative w-full aspect-[16/10] max-h-[195px] rounded-xl sm:rounded-2xl overflow-hidden mb-3.5 sm:mb-4 border border-ink/[0.06] shadow-sm bg-ink/5 flex-none">
                     <img
                       src={p.image}
                       alt={p.name}
                       className="object-cover w-full h-full transition-transform duration-700 ease-out group-hover:scale-105"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-ink/20 to-transparent pointer-events-none" />
-                    <span className="absolute bottom-3 right-3 bg-white/90 backdrop-blur-md text-ink font-mono text-[10px] px-2.5 py-1 rounded-full font-semibold group-hover:bg-saffron group-hover:text-ink transition-colors">
+                    <div className="absolute inset-0 bg-gradient-to-t from-ink/20 via-transparent to-transparent pointer-events-none" />
+                    <span className="absolute bottom-2.5 right-2.5 bg-white/95 backdrop-blur-md text-ink font-mono text-[10px] px-2.5 py-1 rounded-full font-semibold shadow-sm border border-ink/[0.06] group-hover:bg-saffron group-hover:text-ink transition-colors duration-200 flex items-center gap-1">
                       Quick Specs ↗
                     </span>
                   </div>
 
                   {/* Title & Description */}
                   <div>
-                    <p className="eyebrow text-saffron text-[10px] mb-1.5 font-medium">{p.tagline}</p>
-                    <h3 className="font-display text-2xl md:text-3xl mb-2.5 text-ink group-hover:text-paprika transition-colors duration-300">
+                    <p className="eyebrow text-saffron text-[10px] sm:text-[10.5px] font-semibold tracking-wider uppercase mb-1">
+                      {p.tagline}
+                    </p>
+                    <h3 className="font-display text-2xl sm:text-[1.65rem] md:text-[1.75rem] text-ink font-normal mb-1.5 leading-snug group-hover:text-paprika transition-colors duration-300">
                       {p.name}
                     </h3>
-                    <p className="text-xs md:text-sm text-ink/75 leading-relaxed line-clamp-3">
+                    <p className="text-xs sm:text-[13px] text-ink/75 leading-relaxed min-h-[2.6rem] sm:min-h-[2.85rem] line-clamp-2">
                       {p.desc}
                     </p>
                   </div>
 
                   {/* Key Highlights Chips */}
-                  <div className="mt-4 flex flex-wrap gap-1.5">
+                  <div className="mt-3 sm:mt-3.5 flex flex-wrap content-start gap-1 sm:gap-1.5 min-h-[3.6rem] sm:min-h-[4rem]">
                     {p.keyHighlights.map((item) => (
                       <span
                         key={item}
-                        className="bg-white/70 border border-ink/10 rounded-lg px-2.5 py-1 text-[11px] text-ink/80 font-medium"
+                        className="bg-white/85 backdrop-blur-sm border border-ink/10 rounded-lg px-2.5 py-1 text-[11px] text-ink/80 font-medium whitespace-nowrap shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:bg-white hover:border-ink/20 transition-colors"
                       >
                         {item}
                       </span>
@@ -226,11 +229,11 @@ export default function Showcase() {
                 </div>
 
                 {/* Footer action */}
-                <div className="mt-4 pt-3 border-t border-ink/[0.08] flex items-center justify-between">
-                  <span className="eyebrow border border-ink/20 px-3 py-1 rounded-full text-[0.6rem] transition-all duration-300 group-hover:border-saffron group-hover:text-saffron group-hover:bg-saffron/[0.04]">
+                <div className="mt-auto pt-3 border-t border-ink/[0.08] flex items-center justify-between flex-none">
+                  <span className="eyebrow border border-ink/20 px-2.5 sm:px-3 py-1 rounded-full text-[9px] sm:text-[10px] tracking-wider uppercase font-semibold text-ink/70 bg-white/40 group-hover:border-saffron group-hover:text-saffron group-hover:bg-saffron/[0.06] transition-all duration-300">
                     Export Grade
                   </span>
-                  <span className="text-xs font-mono text-ink/60 group-hover:text-ink group-hover:translate-x-1 transition-all inline-flex items-center gap-1 font-semibold">
+                  <span className="text-xs font-mono text-ink/65 group-hover:text-ink group-hover:translate-x-1 transition-all inline-flex items-center gap-1 font-semibold">
                     View Varieties ({p.products.length}) →
                   </span>
                 </div>
@@ -241,7 +244,7 @@ export default function Showcase() {
         </div>
 
         {/* Scroll Progress Bar */}
-        <div className="relative z-[5] mx-auto max-w-7xl px-6 md:px-10 w-full mt-4">
+        <div className="relative z-[5] mx-auto max-w-7xl px-6 md:px-10 w-full flex-none mt-1 sm:mt-2">
           <div className="h-0.5 rounded-full bg-ink/[0.12] overflow-hidden">
             <motion.div style={{ width: barWidth }} className="h-full bg-gradient-to-r from-saffron to-paprika" />
           </div>
